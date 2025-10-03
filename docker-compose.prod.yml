@@ -1,0 +1,12 @@
+# docker-compose.prod.yml for Production
+services:
+  red-tetris-prod:
+    build:
+      context: .
+      target: production # Build the final 'production' stage
+    container_name: red-tetris-prod
+    ports:
+      - "3004:3004"
+    environment:
+      - NODE_ENV=production
+      - DEBUG=tetris:error

@@ -1,0 +1,16 @@
+# docker-compose.yml for Development
+services:
+  red-tetris-dev:
+    build:
+      context: .
+      target: deps # Build only up to the 'deps' stage
+    container_name: red-tetris-dev
+    command: npm run dev
+    ports:
+      - "8080:8080" # Vite client dev server
+      - "3004:3004" # Node.js server
+    environment:
+      - DEBUG=tetris:*
+    volumes:
+      - .:/usr/src/app # Mount source code for hot-reloading
+      - /usr/src/app/node_modules # Do not mount local node_modules
