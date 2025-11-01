@@ -247,10 +247,14 @@ export const start = (params) => {
 
     const app = express()
     const server = http.createServer(app)
+
+    // CORS設定: 本番環境では環境変数から許可オリジンを取得
+    const allowedOrigin = process.env.CORS_ORIGIN || '*'
     const io = new Server(server, {
       cors: {
-        origin: '*', // Adjust for production
+        origin: allowedOrigin,
         methods: ['GET', 'POST'],
+        credentials: allowedOrigin !== '*',
       },
     })
 

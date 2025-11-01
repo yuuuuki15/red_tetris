@@ -8,8 +8,12 @@ const loginfo = createLogger('tetris:info');
 const logerror = createLogger('tetris:error');
 
 // Le chemin vers le fichier de la base de données.
-// Il sera créé dans le répertoire racine du projet.
-const DB_PATH = path.join(process.cwd(), 'leaderboard.db');
+// Cloud Runなどのステートレス環境では、メモリ内DBを使用する
+// 環境変数 DB_TYPE=memory でメモリ内DBを指定可能
+const DB_TYPE = process.env.DB_TYPE || 'file'
+const DB_PATH = DB_TYPE === 'memory'
+  ? ':memory:'
+  : path.join(process.cwd(), 'leaderboard.db');
 
 let db = null;
 

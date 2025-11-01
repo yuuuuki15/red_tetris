@@ -29,6 +29,8 @@ COPY ./src/shared ./src/shared
 # Copy client build from 'builder' stage
 COPY --from=builder /usr/src/app/dist ./dist
 
+# Cloud Run will use PORT environment variable to set the listening port
+# The application will listen on the port specified by process.env.PORT (default: 3004)
 EXPOSE 3004
 
 CMD [ "npm", "start" ]

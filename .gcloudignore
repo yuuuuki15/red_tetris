@@ -1,0 +1,32 @@
+# Git files
+.git/
+.gitignore
+
+# Docker files (not needed for Cloud Run build)
+docker-compose*.yml
+Dockerfile.dev
+
+# Development files
+node_modules/
+.vscode/
+.idea/
+
+# Test files
+coverage/
+*.test.js
+*.spec.js
+__tests__/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build artifacts (will be rebuilt)
+dist/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
